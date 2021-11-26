@@ -133,7 +133,27 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 AUTHENTICATION_BACKENDS = [
-    'social_core.backends.facebook.Facebook.OAuth2',
+    'social_core.backends.facebook.FacebookOAuth2',
     # Apenas se quiser manter a authenticacao padrão do Django
     'django.contrib.auth.backends.ModelBackend',
+]
+
+LOGIN_URL = 'login'
+LOGIN_REDIRECT_URL = 'index'
+LOGOUT_URL = 'logout'
+LOGOUT_REDIRECT_URL = 'login'
+
+# configuracoes para facebook
+SOCIAL_AUTH_RAISE_EXCEPTIONS = False
+SOCIAL_AUTH_FACEBOOK_KEY = 'YOUR KEY'
+SOCIAL_AUTH_FACEBOOK_SECRET = 'YOUR SECRET KEY'
+SOCIAL_AUTH_FACEBOOK_SCOPE = ['email', 'user_link']
+SOCIAL_AUTH_FACEBOOK_PROFILE_EXTRA_PARAMS = {
+    'fields': 'id, name, email, picture.type(large), link'
+}
+SOCIAL_AUTH_FACEBOOK_EXTRA_DATA = [
+    ('name', 'name'),
+    ('email', 'email'),
+    ('picture', 'picture'),
+    ('link', 'profile_url'),
 ]
